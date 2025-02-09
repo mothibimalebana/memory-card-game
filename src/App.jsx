@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
-
 import './App.css'
+import { Fetch } from './components/Card'
 
 function App() {
   return (
     <>
+    <Fetch/>
     </>
   )
 }
