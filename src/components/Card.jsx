@@ -18,6 +18,7 @@ return(
 function Cards(){
     const [characters, setCharacters] = useState([]);
 
+
 // Fetch characters using API
 useEffect(() => {
     async function fetchCharacters() {
@@ -39,7 +40,9 @@ useEffect(() => {
     return(
         <>
         <div>
-            {console.log(characters)}
+            {characters.map((item, index) => 
+            <CardItems character={item} key={index} />
+            )}
         </div>
         </>
     )
