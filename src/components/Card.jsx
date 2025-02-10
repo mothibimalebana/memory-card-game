@@ -1,26 +1,18 @@
 import { useEffect, useState } from "react"
-function CardItems(character,key){
-const cardCharacter = {
-    name: character.name,
-    img: character.url,
-    key: key,
-}
+function CardItems({character, itemNO}){
 
+console.log(character.url)
 return(
     <>
-    <div>
-        <img src={cardCharacter.img} alt={cardCharacter.name} />
-        <p>{cardCharacter.name}</p>
-    </div>
+    <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${itemNO}.png`} alt={character.name} />
+    <p>{character.name}</p>
     </>
 )
 }
 function Cards(){
     const [characters, setCharacters] = useState([]);
-
-
-// Fetch characters using API
-useEffect(() => {
+    // Fetch characters using API
+    useEffect(() => {
     async function fetchCharacters() {
         try {
             const response = await fetch('https://pokeapi.co/api/v2/pokemon/');
@@ -30,7 +22,7 @@ useEffect(() => {
             const resCharacters = data.results.slice(0, 12); // Get the first 12 entries
             setCharacters(resCharacters);
         } catch (e) {
-            console.error(e);
+            console .error(e);
         }
     };
 
@@ -39,9 +31,9 @@ useEffect(() => {
 
     return(
         <>
-        <div>
+        <div key={crypto.randomUUID()}> 
             {characters.map((item, index) => 
-            <CardItems character={item} key={index} />
+            <CardItems character={item} itemNO={index} key={item.name}/>
             )}
         </div>
         </>
