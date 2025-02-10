@@ -35,7 +35,9 @@ function Cards() {
   return (
     <div className="cards-container">
       {characters.map((character, index) => (
-        <CardItems key={character.name} character={character} itemNO={index} />
+        <button key={character.name}>
+            <CardItems character={character} itemNO={index} />
+        </button>
       ))}
     </div>
   );
