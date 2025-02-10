@@ -1,7 +1,10 @@
 #root {
   display: flex;
   min-height: 100vh;
+  min-width: 100vw;
   align-items: center;
+  justify-content: center;
+
 }
 .logo {
   height: 6em;
@@ -33,6 +36,7 @@
 
 .cards-container {
   display: grid;
+  gap: 3rem;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   justify-content: center;
