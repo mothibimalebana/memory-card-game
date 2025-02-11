@@ -14,7 +14,7 @@ function CardItems({ character, itemNO, shuffleCharacters, addPoint, playerPoint
         setWasClicked(!wasClicked);
     }
     // Construct the sprite image URL using itemNO
-    const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${itemNO + 1}.png`;
+    const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${character.id}.png`;
 
     return (
         <div className="card-item">
@@ -47,11 +47,11 @@ function Cards() {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon/');
         const data = await response.json();
         const resCharacters = data.results.slice(0, 12); // Get first 12 entries
-        const resCharactersIndex = resCharacters.map((item, index) => index + 1)
-        console.log(resCharacters)
-        console.log(resCharactersIndex)
-
-        setCharacters(resCharacters);
+        const gameCharacters = resCharacters.map((item, index) => ({
+          name: item.name,
+          id: index+1,
+        }) )
+        setCharacters(gameCharacters);
       } catch (error) {
         console.error('Error fetching characters:', error);
       }
