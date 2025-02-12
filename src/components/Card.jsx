@@ -8,10 +8,14 @@ function CardItems({ character, itemNO, shuffleCharacters, addPoint, playerPoint
       setPlayerPoints(playerPoints => playerPoints + 1)
       console.log(playerPoints)
     }
+    function decisionSystem(){
+      wasClicked ? window.location.reload() : addPoint();
+    }
     function handleClick(){
         shuffleCharacters();
-        addPoint()
+        decisionSystem()
         setWasClicked(!wasClicked);
+        console.log(wasClicked)
     }
     // Construct the sprite image URL using itemNO
     const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${character.id}.png`;
@@ -30,7 +34,7 @@ function CardItems({ character, itemNO, shuffleCharacters, addPoint, playerPoint
 // Cards Component: Fetches the Pokémon data and renders cards
 function Cards() {
   const [characters, setCharacters] = useState([]);
-  const [playerPoints, setPlayerPoints] = useState(1);
+  const [playerPoints, setPlayerPoints] = useState(0);
 
   function shuffleCharacters(){
     const sortedArr = structuredClone(characters);
@@ -61,10 +65,13 @@ function Cards() {
   }, []);
 
   return (
-    <div className="cards-container">
-      {characters.map((character, index) => (
-        <CardItems setPlayerPoints={setPlayerPoints} playerPoints={playerPoints} shuffleCharacters={shuffleCharacters} character={character} key={character.name} itemNO={index} />
-      ))}
+    <div className="container">
+      <div className="header"><h1>Memory Game: {playerPoints}</h1></div>
+      <div className="cards-container">
+        {characters.map((character, index) => (
+          <CardItems setPlayerPoints={setPlayerPoints} playerPoints={playerPoints} shuffleCharacters={shuffleCharacters} character={character} key={character.name} itemNO={index} />
+        ))}
+      </div>
     </div>
   );
 }
